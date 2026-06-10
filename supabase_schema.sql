@@ -91,3 +91,27 @@ alter table deleted_monthly_tasks enable row level security;
 do $$ begin
   create policy "allow all deleted monthly tasks" on deleted_monthly_tasks for all using (true) with check (true);
 exception when duplicate_object then null; end $$;
+
+
+-- Habilitar Realtime para que los cambios aparezcan en otros dispositivos sin actualizar.
+alter table clients replica identity full;
+alter table recurring_tasks replica identity full;
+alter table monthly_tasks replica identity full;
+alter table monthly_fees replica identity full;
+alter table deleted_monthly_tasks replica identity full;
+
+do $$ begin
+  alter publication supabase_realtime add table clients;
+exception when duplicate_object then null; end $$;
+do $$ begin
+  alter publication supabase_realtime add table recurring_tasks;
+exception when duplicate_object then null; end $$;
+do $$ begin
+  alter publication supabase_realtime add table monthly_tasks;
+exception when duplicate_object then null; end $$;
+do $$ begin
+  alter publication supabase_realtime add table monthly_fees;
+exception when duplicate_object then null; end $$;
+do $$ begin
+  alter publication supabase_realtime add table deleted_monthly_tasks;
+exception when duplicate_object then null; end $$;

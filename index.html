@@ -111,6 +111,21 @@ window.saveClient=async()=>{await sb.from('clients').update({name:$('editName').
 async function ensureFee(){let fee=state.fees.find(f=>f.client_id===state.selected);let c=state.clients.find(c=>c.id===state.selected); if(!fee){let ins=await sb.from('monthly_fees').insert({client_id:c.id,month:monthStart(),amount:c.fee_amount||0,currency:c.fee_currency||'$',paid_amount:0,status:'pendiente'}).select().single(); return ins.data} return fee}
 window.addPayment=async()=>{let fee=await ensureFee();let paid=Number(fee.paid_amount||0)+Number($('payAmt').value||0);let status=paid>=Number(fee.amount||0)?'pagado':'parcial';await sb.from('monthly_fees').update({paid_amount:paid,status}).eq('id',fee.id);await load()}
 window.markPaid=async()=>{let fee=await ensureFee();await sb.from('monthly_fees').update({paid_amount:fee.amount,status:'pagado'}).eq('id',fee.id);await load()}
+let realtimeTimer=null;
+function reloadSoon(autoGenerate=false){
+  clearTimeout(realtimeTimer);
+  realtimeTimer=setTimeout(()=>load(autoGenerate),350);
+}
+function setupRealtime(){
+  sb.channel('calendario-clientes-realtime')
+    .on('postgres_changes',{event:'*',schema:'public',table:'clients'},()=>reloadSoon(true))
+    .on('postgres_changes',{event:'*',schema:'public',table:'recurring_tasks'},()=>reloadSoon(true))
+    .on('postgres_changes',{event:'*',schema:'public',table:'monthly_tasks'},()=>reloadSoon(false))
+    .on('postgres_changes',{event:'*',schema:'public',table:'monthly_fees'},()=>reloadSoon(false))
+    .on('postgres_changes',{event:'*',schema:'public',table:'deleted_monthly_tasks'},()=>reloadSoon(false))
+    .subscribe();
+}
+setupRealtime();
 load(true);
 </script>
 </body>
