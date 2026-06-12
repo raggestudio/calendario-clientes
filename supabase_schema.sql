@@ -115,3 +115,23 @@ exception when duplicate_object then null; end $$;
 do $$ begin
   alter publication supabase_realtime add table deleted_monthly_tasks;
 exception when duplicate_object then null; end $$;
+
+
+create table if not exists monthly_due_dates (
+  id uuid primary key default gen_random_uuid(),
+  month date not null,
+  task_name text not null,
+  due_date date not null,
+  created_at timestamptz default now(),
+  unique(month, task_name)
+);
+
+alter table monthly_due_dates enable row level security;
+do $$ begin
+  create policy "allow all monthly due dates" on monthly_due_dates for all using (true) with check (true);
+exception when duplicate_object then null; end $$;
+
+alter table monthly_due_dates replica identity full;
+do $$ begin
+  alter publication supabase_realtime add table monthly_due_dates;
+exception when duplicate_object then null; end $$;
