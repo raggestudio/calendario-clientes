@@ -135,3 +135,31 @@ alter table monthly_due_dates replica identity full;
 do $$ begin
   alter publication supabase_realtime add table monthly_due_dates;
 exception when duplicate_object then null; end $$;
+
+
+-- Mejoras v9: estados, prioridades y tareas maestras
+alter table monthly_tasks add column if not exists priority text default 'media';
+alter table recurring_tasks add column if not exists priority text default 'media';
+alter table recurring_tasks add column if not exists initial_status text default 'pendiente';
+
+create table if not exists master_task_templates (
+  id uuid primary key default gen_random_uuid(),
+  name text not null,
+  description text,
+  frequency text default 'mensual',
+  due_day int default 25,
+  initial_status text default 'pendiente',
+  priority text default 'media',
+  company_type text,
+  created_at timestamptz default now()
+);
+
+alter table master_task_templates enable row level security;
+do $$ begin
+  create policy "allow all master templates" on master_task_templates for all using (true) with check (true);
+exception when duplicate_object then null; end $$;
+
+alter table master_task_templates replica identity full;
+do $$ begin
+  alter publication supabase_realtime add table master_task_templates;
+exception when duplicate_object then null; end $$;
