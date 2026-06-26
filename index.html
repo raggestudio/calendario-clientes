@@ -8,14 +8,26 @@
   <style>
     :root{--bg:#f7f4ee;--card:#fff;--border:#e4d7c8;--brand:#9b6733;--dark:#2b2520;--muted:#74695f;--red:#c22b23;--green:#55c980;--yellow:#ffd35c;--purple:#c9b5e8;--blue:#9ed0ff;--violet:#d7c0ff}
     *{box-sizing:border-box}body{margin:0;font-family:Arial, sans-serif;background:var(--bg);color:#201b17}.top{background:#2b2520;color:#fff;padding:20px 24px;display:flex;justify-content:space-between;align-items:center}.top h1{margin:0;font-size:26px}.top p{margin:5px 0 0}.month{display:flex;align-items:center;gap:8px}.month input{font-size:16px;padding:10px;border-radius:8px;border:0}.wrap{padding:22px}.cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(170px,1fr));gap:14px;margin-bottom:18px}.card{background:var(--card);border:1px solid var(--border);border-radius:13px;padding:16px;box-shadow:0 2px 6px #0001}.card .num{font-size:28px;font-weight:bold;margin-top:8px}.layout{display:grid;grid-template-columns:360px 1fr;gap:18px}.panel{background:var(--card);border:1px solid var(--border);border-radius:13px;padding:16px;box-shadow:0 2px 6px #0001}input,select,button{font:inherit}input,select{padding:11px;border:1px solid var(--border);border-radius:8px;background:#fff}button{padding:10px 14px;border:0;border-radius:8px;background:var(--brand);color:#fff;font-weight:bold;cursor:pointer}button.danger{background:var(--red)}button.light{background:#eee;color:#222}.grid2{display:grid;grid-template-columns:1fr 1fr;gap:8px}.full{grid-column:1/-1}.client{border:1px solid var(--border);border-radius:10px;padding:10px;margin:8px 0;cursor:pointer}.client.active{outline:2px solid var(--brand)}.muted{color:var(--muted);font-size:13px}.badge{display:inline-block;border-radius:999px;padding:5px 9px;font-size:12px;font-weight:bold;margin-right:6px}.pendiente{background:#ffd1cc}.proceso{background:#ffe08a}.completada{background:#bce8c8}.esperando{background:#cfe8ff}.observada{background:#e3d2ff}.dot{display:inline-block;width:12px;height:12px;border-radius:50%;margin-right:6px;vertical-align:-1px}.task{display:grid;grid-template-columns:1.3fr 140px 110px 1fr 230px;gap:8px;align-items:center;border:1px solid var(--border);border-radius:10px;padding:10px;margin:8px 0}.task strong{display:block}.due{display:inline-block;border-radius:999px;padding:4px 8px;font-size:12px;font-weight:bold}.due.ok{background:#bdecc5}.due.warn{background:#ffe08a}.due.over{background:#ffb3a9}.general table{width:100%;border-collapse:collapse}.general th,.general td{border:1px solid var(--border);padding:9px;text-align:left}.status-cell{font-size:22px;text-align:center!important;cursor:pointer}.tabs{display:flex;gap:8px;margin-bottom:14px}.tabs button{background:#e8ddd0;color:#2b2520}.tabs button.active{background:var(--brand);color:white}.hidden{display:none}.urgent{border-left:6px solid var(--red);padding:9px 10px;margin:7px 0;background:#fff;border-radius:8px}.urgent.today{border-left-color:var(--yellow)}.urgent.week{border-left-color:var(--brand)}.payrow{display:flex;justify-content:space-between;align-items:center;gap:8px;border:1px solid var(--border);border-radius:10px;padding:10px}.small{font-size:13px}.actions{display:flex;gap:8px;flex-wrap:wrap}.archived{opacity:.75}.dueRow{display:grid;grid-template-columns:1.4fr 180px 120px;gap:8px;align-items:center;border:1px solid var(--border);border-radius:10px;padding:10px;margin:8px 0}
-.filters{display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:10px;margin:12px 0 16px}.quick{display:flex;gap:6px;flex-wrap:wrap}.quick button{padding:7px 9px;font-size:12px}.priority{display:inline-block;border-radius:999px;padding:4px 8px;font-size:12px;font-weight:bold}.prio-alta{background:#ffb3a9}.prio-media{background:#ffe08a}.prio-baja{background:#d8f0dc}.progress{height:13px;background:#eee;border-radius:999px;overflow:hidden;margin:8px 0}.progress>div{height:100%;background:var(--brand)}.sectionTitle{margin-top:18px;border-bottom:1px solid var(--border);padding-bottom:6px}.templateRow{display:grid;grid-template-columns:1.3fr 120px 90px 120px 110px 120px;gap:8px;align-items:center;border:1px solid var(--border);border-radius:10px;padding:10px;margin:8px 0}.checkRow{display:flex;justify-content:space-between;gap:8px;align-items:center;border:1px solid var(--border);border-radius:8px;padding:8px;margin:6px 0}@media(max-width:900px){.filters,.templateRow{grid-template-columns:1fr}.quick{margin-top:8px}}
+.filters{display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:10px;margin:12px 0 16px}.quick{display:flex;gap:6px;flex-wrap:wrap}.quick button{padding:7px 9px;font-size:12px}.priority{display:inline-block;border-radius:999px;padding:4px 8px;font-size:12px;font-weight:bold}.prio-alta{background:#ffb3a9}.prio-media{background:#ffe08a}.prio-baja{background:#d8f0dc}.progress{height:13px;background:#eee;border-radius:999px;overflow:hidden;margin:8px 0}.progress>div{height:100%;background:var(--brand)}.sectionTitle{margin-top:18px;border-bottom:1px solid var(--border);padding-bottom:6px}.templateRow{display:grid;grid-template-columns:1.3fr 120px 90px 120px 110px 120px;gap:8px;align-items:center;border:1px solid var(--border);border-radius:10px;padding:10px;margin:8px 0}.checkRow{display:flex;justify-content:space-between;gap:8px;align-items:center;border:1px solid var(--border);border-radius:8px;padding:8px;margin:6px 0}.subtabs{display:flex;gap:8px;flex-wrap:wrap;margin:8px 0 14px}.subtabs button{background:#e8ddd0;color:#2b2520}.subtabs button.active{background:var(--brand);color:#fff}.aterGrid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:10px}.roomsVisual{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:12px;margin:12px 0}.roomTile{border:1px solid var(--border);border-radius:14px;padding:14px;background:#fff;cursor:pointer;box-shadow:0 2px 6px #0001}.roomTile.active{outline:3px solid var(--brand)}.roomNum{font-size:28px;font-weight:bold}.roomMeta{font-size:13px;color:var(--muted);margin-top:5px}.roomCard{border:1px solid var(--border);border-radius:12px;padding:12px;background:#fff;margin:8px 0}.roomHeader{display:flex;justify-content:space-between;gap:8px;align-items:center}.waitItem{display:grid;grid-template-columns:70px 1fr 150px 180px;gap:8px;align-items:center;border:1px solid var(--border);border-radius:10px;padding:10px;margin:8px 0}.obs{width:100%;min-height:56px;padding:10px;border:1px solid var(--border);border-radius:8px;resize:vertical}.miniTable{width:100%;border-collapse:collapse}.miniTable th,.miniTable td{border:1px solid var(--border);padding:8px;text-align:left}.contractDots{display:flex;gap:6px;align-items:center}.contractDot{width:22px;height:22px;border-radius:50%;border:2px solid #bbb;background:#fff;cursor:pointer;display:inline-block}.contractDot.yellow{background:#ffd35c;border-color:#c39b00}.contractDot.green{background:#55c980;border-color:#29824b}.contractDot.active{outline:3px solid #2b2520}.depositWarn{border-left:6px solid var(--yellow);padding:9px 10px;margin:7px 0;background:#fff;border-radius:8px}.moneyInput{width:110px}.formSection{border:1px solid var(--border);border-radius:12px;padding:12px;margin:10px 0;background:#fff}.formSection h4{margin:0 0 10px}.field{display:flex;flex-direction:column;gap:4px}.field label{font-size:12px;color:var(--muted);font-weight:bold}.occupancyIcons{font-size:20px;margin-top:8px;letter-spacing:2px}.roomTile.full{border-left:7px solid var(--green)}.roomTile.partial{border-left:7px solid var(--yellow)}.roomTile.empty{border-left:7px solid var(--red)}.searchBox{margin:8px 0 14px}.searchResults{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:8px}.searchResult{border:1px solid var(--border);border-radius:10px;padding:10px;background:#fff}.availabilityMonth{display:flex;justify-content:space-between;gap:8px;border:1px solid var(--border);border-radius:10px;padding:10px;margin:7px 0}.overdue{border-left:6px solid var(--red)!important}.dateLabel{font-size:12px;color:var(--muted);font-weight:bold;margin-top:6px}.statusRoom{font-size:12px;font-weight:bold;border-radius:999px;padding:4px 8px;display:inline-block}.tiny{font-size:12px;color:var(--muted)}.userRow{display:grid;grid-template-columns:1.5fr 130px 120px;gap:8px;align-items:center;border:1px solid var(--border);border-radius:10px;padding:10px;margin:8px 0}@media(max-width:900px){.filters,.templateRow{grid-template-columns:1fr}.quick{margin-top:8px}}
 @media(max-width:900px){.cards{grid-template-columns:1fr 1fr}.layout{grid-template-columns:1fr}.task{grid-template-columns:1fr}.top{display:block}.month{margin-top:12px}}
   </style>
 </head>
 <body>
 <header class="top"><div><h1>Calendario de Clientes</h1><p>Clientes, tareas, estados y honorarios compartidos</p></div><div class="month"><label>Mes</label><input id="month" type="month"></div></header>
-<div class="wrap">
-  <div class="tabs"><button id="tabDashboard" class="active">Inicio</button><button id="tabGeneral">Vista general</button><button id="tabDueDates">Vencimientos</button><button id="tabArchived">Archivados</button><button id="tabConfig">Configuración</button></div>
+<div id="loginScreen" class="wrap hidden">
+  <section class="panel" style="max-width:480px;margin:40px auto">
+    <h2>Ingresar</h2>
+    <p class="muted">Usá el usuario creado en Supabase para acceder a la aplicación.</p>
+    <div class="grid2">
+      <input id="loginEmail" class="full" type="email" placeholder="Email">
+      <input id="loginPass" class="full" type="password" placeholder="Contraseña">
+      <button id="loginBtn" class="full">Entrar</button>
+    </div>
+    <p id="loginMsg" class="muted"></p>
+  </section>
+</div>
+<div class="wrap" id="appWrap">
+  <div class="tabs" id="mainTabs"><button id="tabDashboard" class="active">Inicio</button><button id="tabGeneral">Vista general</button><button id="tabDueDates">Vencimientos</button><button id="tabArchived">Archivados</button><button id="tabConfig">Configuración</button><button id="tabAterpea">ATERPEA</button><button id="logoutBtn" class="light" style="margin-left:auto">Salir</button><span id="userRoleBadge" class="muted" style="align-self:center"></span></div>
   <section id="dashboard">
     <div class="cards"><div class="card">Clientes activos<div class="num" id="cClients">0</div></div><div class="card">Pendientes<div class="num" id="cPend">0</div></div><div class="card">Vencidas<div class="num" id="cOver">0</div></div><div class="card">Vencen hoy<div class="num" id="cToday">0</div></div><div class="card">Esta semana<div class="num" id="cWeek">0</div></div><div class="card">En proceso<div class="num" id="cProc">0</div></div><div class="card">Completadas<div class="num" id="cComp">0</div></div><div class="card">Observadas<div class="num" id="cObs">0</div></div><div class="card">Honorarios pendientes<div class="num" id="cFees">$ 0</div><div class="muted" id="cFeesTotal">sobre $ 0</div><div class="progress"><div id="cFeeBar" style="width:0%"></div></div><div class="muted" id="cFeePct">0% cobrado</div></div></div>
     <div class="panel" style="margin-bottom:18px"><h2>Trabajo urgente</h2><div class="filters"><input id="filterClient" placeholder="Buscar cliente o tarea"><select id="filterStatus"><option value="">Todos los estados</option><option value="pendiente">Pendiente</option><option value="proceso">En proceso</option><option value="esperando">Esperando cliente</option><option value="observada">Observada</option><option value="completada">Completada</option></select><select id="filterType"><option value="">Todas las tareas</option></select><select id="filterPrio"><option value="">Todas las prioridades</option><option value="alta">Alta</option><option value="media">Media</option><option value="baja">Baja</option></select></div><div id="urgentList"></div></div>
@@ -23,8 +35,46 @@
   </section>
   <section id="general" class="panel general hidden"><h2>Vista general tipo Excel</h2><div id="generalTable"></div></section>
   <section id="duedates" class="panel hidden"><h2>Vencimientos del mes</h2><p class="muted">Cambiá una fecha una sola vez y se aplica a todos los clientes que tengan esa tarea en el mes seleccionado.</p><div id="dueDateList"></div></section>
-  <section id="archived" class="panel hidden"><h2>Clientes archivados</h2><div id="archivedList"></div></section><section id="config" class="panel hidden"><h2>Configuración / Tareas maestras</h2><p class="muted">Creá tareas tipo para aplicar rápido a clientes.</p><div class="grid2"><input id="tplName" placeholder="Nombre: IVA, BPS, Nómina"><input id="tplDesc" placeholder="Descripción"><select id="tplFreq"><option value="mensual">Mensual</option><option value="bimensual">Bimensual</option><option value="trimestral">Trimestral</option><option value="anual">Anual</option><option value="puntual">Puntual</option></select><input id="tplDay" type="number" placeholder="Día vencimiento"><select id="tplStatus"><option value="pendiente">Pendiente</option><option value="proceso">En proceso</option><option value="esperando">Esperando cliente</option><option value="observada">Observada</option></select><select id="tplPrio"><option value="media">Prioridad media</option><option value="alta">Alta</option><option value="baja">Baja</option></select><input id="tplCompany" placeholder="Tipo empresa o vacío para todos"><button id="addTemplate">Agregar tarea maestra</button></div><div id="templateList" style="margin-top:16px"></div></section>
-  <div class="layout">
+  <section id="archived" class="panel hidden"><h2>Clientes archivados</h2><div id="archivedList"></div></section><section id="config" class="panel hidden"><h2>Configuración / Tareas maestras</h2><p class="muted">Creá tareas tipo para aplicar rápido a clientes.</p><div class="grid2"><input id="tplName" placeholder="Nombre: IVA, BPS, Nómina"><input id="tplDesc" placeholder="Descripción"><select id="tplFreq"><option value="mensual">Mensual</option><option value="bimensual">Bimensual</option><option value="trimestral">Trimestral</option><option value="anual">Anual</option><option value="puntual">Puntual</option></select><input id="tplDay" type="number" placeholder="Día vencimiento"><select id="tplStatus"><option value="pendiente">Pendiente</option><option value="proceso">En proceso</option><option value="esperando">Esperando cliente</option><option value="observada">Observada</option></select><select id="tplPrio"><option value="media">Prioridad media</option><option value="alta">Alta</option><option value="baja">Baja</option></select><input id="tplCompany" placeholder="Tipo empresa o vacío para todos"><button id="addTemplate">Agregar tarea maestra</button></div><div id="templateList" style="margin-top:16px"></div>
+    <hr style="border:0;border-top:1px solid var(--border);margin:24px 0">
+    <h2>Usuarios</h2>
+    <p class="muted">Primero creá el usuario en Supabase > Authentication > Users. Después agregalo acá con su email y rol.</p>
+    <div class="grid2">
+      <input id="userEmail" type="email" placeholder="Email del usuario">
+      <select id="userRole"><option value="admin">Administrador - ve todo</option><option value="aterpea">ATERPEA - solo residencia</option></select>
+      <button id="addUserRole" class="full">Agregar / actualizar usuario</button>
+    </div>
+    <p id="userRoleMsg" class="muted"></p>
+    <div id="userRoleList" style="margin-top:16px"></div>
+  </section>
+
+  <section id="aterpea" class="panel hidden">
+    <h2>ATERPEA · Residencia estudiantil</h2>
+    <p class="muted">Módulo separado para visitas guiadas, lista de espera, habitaciones y fichas de estudiantes.</p>
+    <div class="cards">
+      <div class="card">Habitaciones<div class="num" id="aRooms">0</div></div>
+      <div class="card">Capacidad total<div class="num" id="aCapacity">0</div></div>
+      <div class="card">Ocupados<div class="num" id="aActive">0</div></div>
+      <div class="card">Reservados<div class="num" id="aReserved">0</div></div>
+      <div class="card">Cupos libres reales<div class="num" id="aFree">0</div></div>
+      <div class="card">Lista de espera<div class="num" id="aWait">0</div></div>
+      <div class="card">Visitas pendientes<div class="num" id="aVisits">0</div></div><div class="card">Garantías pendientes<div class="num" id="aDepositPending">$ 0</div></div>
+    </div>
+    <div class="subtabs">
+      <button id="aTabPanel" class="active" onclick="showAterpeaTab('panel')">Panel</button>
+      <button id="aTabVisits" onclick="showAterpeaTab('visits')">Visitas guiadas</button>
+      <button id="aTabWaitlist" onclick="showAterpeaTab('waitlist')">Lista de espera</button>
+      <button id="aTabRooms" onclick="showAterpeaTab('rooms')">Habitaciones</button>
+      <button id="aTabReservations" onclick="showAterpeaTab('reservations')">Reservas</button><button id="aTabStudents" onclick="showAterpeaTab('students')">Estudiantes</button>
+    </div>
+    <div id="aPanel"></div>
+    <div id="aVisitsBox" class="hidden"></div>
+    <div id="aWaitlistBox" class="hidden"></div>
+    <div id="aRoomsBox" class="hidden"></div>
+    <div id="aReservationsBox" class="hidden"></div>
+    <div id="aStudentsBox" class="hidden"></div>
+  </section>
+  <div id="clientLayout" class="layout">
     <aside class="panel"><h2>Clientes</h2><div class="grid2"><input id="newName" placeholder="Nombre del cliente"><input id="newType" placeholder="Tipo empresa"><input id="newFee" placeholder="Honorario" type="number"><select id="newCurr"><option>$</option><option>USD</option></select><button id="addClient" class="full">Agregar cliente</button></div><div id="clients"></div></aside>
     <main class="panel"><div id="detail"><p>Seleccioná un cliente.</p></div></main>
   </div>
@@ -33,11 +83,15 @@
 const SUPABASE_URL='https://fadxutdctgldpislzmgi.supabase.co';
 const SUPABASE_KEY='sb_publishable_I1OK75QI1mcOAJQAS50HRA_w5iemMz5';
 const sb=supabase.createClient(SUPABASE_URL,SUPABASE_KEY);
+let currentUser=null;
+let currentRole='admin';
+function isAterpeaOnly(){return currentRole==='aterpea'}
 const statusCycle=['pendiente','proceso','esperando','observada','completada'];
 const statusLabel={pendiente:'Pendiente',proceso:'En proceso',esperando:'Esperando cliente',completada:'Completada',observada:'Observada'};
 const statusEmoji={pendiente:'🔴',proceso:'🟡',esperando:'🔵',completada:'🟢',observada:'🟣'};
 const priorityLabel={alta:'Alta',media:'Media',baja:'Baja'};
-let state={clients:[],recurring:[],tasks:[],fees:[],deleted:[],dueDates:[],templates:[],selected:null};
+let state={clients:[],recurring:[],tasks:[],fees:[],deleted:[],dueDates:[],templates:[],userRoles:[],aterRooms:[],aterStudents:[],aterVisits:[],aterWaitlist:[],selected:null};
+const roomBasePrices={'Triple baño compartido':15700,'Triple con baño privado':16700,'Doble baño compartido':18700,'Doble con baño privado':19700,'Doble plus con baño':20700};
 const $=id=>document.getElementById(id);
 function ymDate(){return $('month').value || new Date().toISOString().slice(0,7)}
 function monthStart(){return ymDate()+'-01'}
@@ -46,16 +100,23 @@ function daysTo(date){let a=new Date(new Date().toISOString().slice(0,10)); let 
 function dueClass(d,s){if(s==='completada')return 'ok';let n=daysTo(d); if(n<0)return 'over'; if(n<=5)return 'warn'; return 'ok'}
 function applies(rec, ym){ if(!rec.start_month) return true; const [y,m]=ym.split('-').map(Number); const [sy,sm]=rec.start_month.split('-').map(Number); const diff=(y-sy)*12+(m-sm); if(diff<0) return false; const f=rec.frequency||'mensual'; const map={mensual:1,bimensual:2,trimestral:3,semestral:6,anual:12}; return diff%(map[f]||1)===0; }
 async function load(autoGenerate=false){
-  const [c,r,t,f,d,dd,mt]=await Promise.all([
+  const [c,r,t,f,d,dd,mt,ur,ar,as,av,aw]=await Promise.all([
     sb.from('clients').select('*').order('name'),
     sb.from('recurring_tasks').select('*').order('name'),
     sb.from('monthly_tasks').select('*').eq('month',monthStart()).order('due_date'),
     sb.from('monthly_fees').select('*').eq('month',monthStart()),
     sb.from('deleted_monthly_tasks').select('*').eq('month',monthStart()),
     sb.from('monthly_due_dates').select('*').eq('month',monthStart()).order('task_name'),
-    sb.from('master_task_templates').select('*').order('name')
+    sb.from('master_task_templates').select('*').order('name'),
+    sb.rpc('app_list_user_roles'),
+    sb.from('aterpea_rooms').select('*').order('room_number'),
+    sb.from('aterpea_students').select('*').order('last_name'),
+    sb.from('aterpea_visits').select('*').order('visit_at'),
+    sb.from('aterpea_waitlist').select('*').order('position')
   ]);
-  state.clients=c.data||[]; state.recurring=r.data||[]; state.tasks=t.data||[]; state.fees=f.data||[]; state.deleted=d.data||[]; state.dueDates=dd.data||[]; state.templates=mt.data||[];
+  state.clients=c.data||[]; state.recurring=r.data||[]; state.tasks=t.data||[]; state.fees=f.data||[]; state.deleted=d.data||[]; state.dueDates=dd.data||[]; state.templates=mt.data||[]; state.userRoles=ur.data||[]; state.aterRooms=ar.data||[]; state.aterStudents=as.data||[]; state.aterVisits=av.data||[]; state.aterWaitlist=aw.data||[];
+  const activated=await activateDueReservations();
+  if(activated){ await load(false); return; }
   if(autoGenerate){ await generateMonth(false); return; }
   render();
 }
@@ -83,8 +144,9 @@ async function generateMonth(showAlert=true){
   if(showAlert) alert(created ? 'Tareas del mes generadas/actualizadas.' : 'No había tareas nuevas para generar en este mes.');
 }
 function activeClients(){return state.clients.filter(c=>!c.archived)}
-function render(){renderTabs();renderCards();renderClients();renderSummary();renderUrgent();renderDetail();renderGeneral();renderDueDates();renderArchived();renderTemplates();}
-function renderTabs(){['Dashboard','General','DueDates','Archived','Config'].forEach(x=>{$('tab'+x).onclick=()=>{['dashboard','general','duedates','archived','config'].forEach(s=>$(s).classList.add('hidden'));$(x==='DueDates'?'duedates':x.toLowerCase()).classList.remove('hidden');document.querySelectorAll('.tabs button').forEach(b=>b.classList.remove('active'));$('tab'+x).classList.add('active')}})}
+function render(){renderTabs(); if(isAterpeaOnly()){renderAterpea(); showMainTab('Aterpea'); return;} renderCards();renderClients();renderSummary();renderUrgent();renderDetail();renderGeneral();renderDueDates();renderArchived();renderTemplates(); renderUserRoles();renderAterpea();}
+function showMainTab(x){if(isAterpeaOnly()) x='Aterpea'; ['dashboard','general','duedates','archived','config','aterpea'].forEach(s=>$(s).classList.add('hidden'));$(x==='DueDates'?'duedates':x.toLowerCase()).classList.remove('hidden');$('clientLayout').classList.toggle('hidden',x==='Aterpea'||x==='General'||x==='DueDates'||x==='Archived'||x==='Config'||isAterpeaOnly());document.querySelectorAll('.tabs button').forEach(b=>b.classList.remove('active'));$('tab'+x)?.classList.add('active')}
+function renderTabs(){['Dashboard','General','DueDates','Archived','Config','Aterpea'].forEach(x=>{const b=$('tab'+x); if(!b)return; b.onclick=()=>showMainTab(x); b.style.display=isAterpeaOnly() && x!=='Aterpea'?'none':'';}); if($('userRoleBadge')) $('userRoleBadge').textContent=isAterpeaOnly()?'Acceso: solo ATERPEA':'Acceso: administrador'; const m=document.querySelector('.month'); if(m) m.style.display=isAterpeaOnly()?'none':''; const h=document.querySelector('.top h1'); if(h) h.textContent=isAterpeaOnly()?'ATERPEA · Residencia estudiantil':'Calendario de Clientes';}
 function renderCards(){let active=activeClients();let ts=state.tasks.filter(t=>active.some(c=>c.id===t.client_id));let open=ts.filter(t=>t.status!=='completada');$('cClients').textContent=active.length;$('cPend').textContent=ts.filter(t=>t.status==='pendiente').length;$('cProc').textContent=ts.filter(t=>t.status==='proceso').length;$('cComp').textContent=ts.filter(t=>t.status==='completada').length;$('cObs').textContent=ts.filter(t=>t.status==='observada').length;$('cOver').textContent=open.filter(t=>daysTo(t.due_date)<0).length;$('cToday').textContent=open.filter(t=>daysTo(t.due_date)===0).length;$('cWeek').textContent=open.filter(t=>daysTo(t.due_date)>0&&daysTo(t.due_date)<=7).length;let fees=state.fees.filter(f=>active.some(c=>c.id===f.client_id));let pending=fees.reduce((a,f)=>a+Math.max(0,Number(f.amount||0)-Number(f.paid_amount||0)),0);let total=fees.reduce((a,f)=>a+Number(f.amount||0),0);let paid=fees.reduce((a,f)=>a+Number(f.paid_amount||0),0);let pct=total?Math.min(100,Math.round(paid*100/total)):0;$('cFees').textContent=fmtMoney(pending);$('cFeesTotal').textContent='sobre '+fmtMoney(total);$('cFeeBar').style.width=pct+'%';$('cFeePct').textContent=pct+'% cobrado'}
 function renderClients(){$('clients').innerHTML=activeClients().map(c=>`<div class="client ${state.selected===c.id?'active':''}" onclick="selectClient('${c.id}')"><strong>${c.name}</strong><div class="muted">${c.company_type||''} · ${fmtMoney(c.fee_amount,c.fee_currency)}</div></div>`).join('')}
 function renderSummary(){let html='<table style="width:100%;border-collapse:separate;border-spacing:0 8px"><tr><th>Cliente</th><th>Pend.</th><th>Proceso</th><th>Vencidas</th><th>Hechas</th><th>Obs.</th><th>Pago</th></tr>'; for(const c of activeClients()){let ts=state.tasks.filter(t=>t.client_id===c.id);let fee=state.fees.find(f=>f.client_id===c.id);let due=fee?Math.max(0,Number(fee.amount||0)-Number(fee.paid_amount||0)):Number(c.fee_amount||0);html+=`<tr class="client" onclick="selectClient('${c.id}')"><td><b>${c.name}</b><div class="muted">${c.company_type||''}</div></td><td>${ts.filter(t=>t.status==='pendiente').length}</td><td>${ts.filter(t=>t.status==='proceso').length}</td><td>${ts.filter(t=>t.status!=='completada'&&daysTo(t.due_date)<0).length}</td><td>${ts.filter(t=>t.status==='completada').length}</td><td>${ts.filter(t=>t.status==='observada').length}</td><td>${due<=0?'Pagado':fmtMoney(due,fee?.currency||c.fee_currency)}</td></tr>`} $('clientSummary').innerHTML=html+'</table>'}
@@ -122,6 +184,136 @@ window.saveDueDate=async(encName)=>{
   await sb.from('monthly_tasks').update({due_date:val}).eq('month',monthStart()).ilike('name',name);
   await load(false);
 }
+
+let selectedAterRoom=null;
+const roomDefaults={
+  '1':['Triple baño compartido',3], '4':['Triple baño compartido',3], '7':['Triple baño compartido',3],
+  '2':['Doble baño compartido',2], '3':['Doble baño compartido',2], '5':['Doble baño compartido',2], '6':['Doble baño compartido',2], '8':['Doble baño compartido',2], '9':['Doble baño compartido',2],
+  '10':['Doble plus con baño',2],
+  '11':['Doble con baño privado',2], '12':['Doble con baño privado',2],
+  '13':['Triple con baño privado',3]
+};
+function roomType(r){return r.room_type || roomDefaults[String(r.room_number)]?.[0] || ''}
+function roomCapacity(r){return Number(r.capacity || roomDefaults[String(r.room_number)]?.[1] || 0)}
+function roomDefaultPrice(r){return Number(r.monthly_price || roomBasePrices[roomType(r)] || 0)}
+function roomPriceLabel(r){let n=roomDefaultPrice(r); return n?fmtMoney(n):''}
+function fullName(st){return `${st.first_name||''} ${st.last_name||''}`.trim()}
+function roomOccupants(roomId){return state.aterStudents.filter(s=>s.room_id===roomId&&s.status==='activo')}
+function todayISO(){return new Date().toISOString().slice(0,10)}
+async function activateDueReservations(){
+  const today=todayISO();
+  const due=state.aterStudents.filter(s=>s.status==='reservado' && s.contract_start && s.contract_start<=today);
+  if(!due.length)return false;
+  for(const s of due){ await sb.from('aterpea_students').update({status:'activo'}).eq('id',s.id); }
+  return true;
+}
+function activeAterStudents(){return state.aterStudents.filter(s=>s.status==='activo')}
+function reservedAterStudents(){return state.aterStudents.filter(s=>s.status==='reservado')}
+function futureFreeByMonth(months=14){
+  const now=new Date();
+  const out=[];
+  const capacity=state.aterRooms.reduce((a,r)=>a+roomCapacity(r),0);
+  for(let i=0;i<months;i++){
+    const d=new Date(now.getFullYear(), now.getMonth()+i, 1);
+    const ym=d.toISOString().slice(0,7);
+    const end=new Date(d.getFullYear(), d.getMonth()+1, 0).toISOString().slice(0,10);
+    const activeAtEnd=state.aterStudents.filter(s=>['activo','reservado'].includes(s.status||'activo') && (!s.contract_start || s.contract_start<=end) && (!s.contract_end || s.contract_end>=ym+'-01')).length;
+    out.push({ym, free:Math.max(0,capacity-activeAtEnd)});
+  }
+  return out;
+}
+function renderAterpea(){
+  const rooms=state.aterRooms, students=activeAterStudents(), reserved=reservedAterStudents();
+  const pendingVisits=state.aterVisits.filter(v=>['pendiente','confirmada'].includes(v.status||'pendiente'));
+  const wait=state.aterWaitlist.filter(w=>!['descartado','ingresó','reservado'].includes(w.status||'espera'));
+  const capacity=rooms.reduce((a,r)=>a+roomCapacity(r),0);
+  const depPending=state.aterStudents.filter(s=>['activo','reservado'].includes(s.status||'activo')).reduce((a,s)=>a+depositPending(s),0);
+  $('aRooms').textContent=rooms.length; if($('aCapacity')) $('aCapacity').textContent=capacity; $('aActive').textContent=students.length; if($('aReserved')) $('aReserved').textContent=reserved.length; $('aFree').textContent=Math.max(0,capacity-students.length-reserved.length); $('aWait').textContent=wait.length; $('aVisits').textContent=pendingVisits.length; if($('aDepositPending')) $('aDepositPending').textContent=fmtMoney(depPending);
+  renderAterpeaPanel(); renderVisits(); renderWaitlist(); renderRooms();renderReservations();renderStudents();
+}
+function showAterpeaTab(tab){
+  ['panel','visits','waitlist','rooms','reservations','students'].forEach(x=>{const box=$(x==='panel'?'aPanel':'a'+x[0].toUpperCase()+x.slice(1)+'Box'); if(box) box.classList.toggle('hidden',x!==tab); const btn=$('aTab'+x[0].toUpperCase()+x.slice(1)); if(btn) btn.classList.toggle('active',x===tab)});
+}
+function depositTotal(s){return Number(s.deposit_total ?? s.deposit_amount ?? 0)}
+function depositPaid(s){return Number(s.deposit_paid ?? 0)}
+function depositPending(s){return Math.max(0, depositTotal(s)-depositPaid(s))}
+function contractStatusLabel(s){return {no_enviado:'Sin enviar',enviado:'Enviado',firmado:'Firmado'}[s.contract_status||'no_enviado']||'Sin enviar'}
+function contractStatusControl(s){const cur=s.contract_status||'no_enviado';return `<div class="contractDots" title="Contrato: ${contractStatusLabel(s)}"><span class="contractDot ${cur==='no_enviado'?'active':''}" onclick="updateStudent('${s.id}','contract_status','no_enviado')" title="Sin enviar"></span><span class="contractDot yellow ${cur==='enviado'?'active':''}" onclick="updateStudent('${s.id}','contract_status','enviado')" title="Enviado"></span><span class="contractDot green ${cur==='firmado'?'active':''}" onclick="updateStudent('${s.id}','contract_status','firmado')" title="Firmado"></span><span class="muted">${contractStatusLabel(s)}</span></div>`}
+function renderAterpeaPanel(){
+  const próximas=state.aterVisits.filter(v=>['pendiente','confirmada'].includes(v.status||'pendiente')).slice(0,6);
+  const reservas=reservedAterStudents().sort((a,b)=>(a.contract_start||'9999').localeCompare(b.contract_start||'9999')).slice(0,6);
+  const overdue=reservedAterStudents().filter(s=>s.contract_start && daysTo(s.contract_start)<0).sort((a,b)=>a.contract_start.localeCompare(b.contract_start));
+  const ingresosSemana=reservedAterStudents().filter(s=>s.contract_start && daysTo(s.contract_start)>=0 && daysTo(s.contract_start)<=7).sort((a,b)=>a.contract_start.localeCompare(b.contract_start));
+  const vencen=activeAterStudents().filter(s=>s.contract_end).sort((a,b)=>a.contract_end.localeCompare(b.contract_end)).slice(0,8);
+  const depPend=state.aterStudents.filter(s=>['activo','reservado'].includes(s.status||'activo')&&depositPending(s)>0).sort((a,b)=>depositPending(b)-depositPending(a)).slice(0,8);
+  const search=`<div class="panel full"><h3>Buscador global</h3><input id="aterSearch" class="searchBox" style="width:100%" placeholder="Buscar por nombre, documento, teléfono o email" oninput="renderAterSearch(this.value)"><div id="aterSearchResults" class="searchResults"></div></div>`;
+  $('aPanel').innerHTML=`<div class="aterGrid">${search}<div class="panel"><h3>Próximas visitas</h3>${próximas.map(v=>`<div class="client"><b>${v.name}</b><div class="muted">${v.visit_at?new Date(v.visit_at).toLocaleString('es-UY'):''} · ${v.phone||''}</div><div>${v.notes||''}</div></div>`).join('')||'<p class="muted">Sin visitas pendientes.</p>'}</div><div class="panel"><h3>Próximos ingresos</h3>${ingresosSemana.map(s=>`<div class="client"><b>${fullName(s)}</b><div class="muted">Ingresa ${s.contract_start||'-'} · ${roomName(s.room_id)}</div></div>`).join('')||'<p class="muted">Sin ingresos esta semana.</p>'}</div><div class="panel"><h3>Reservas próximas</h3>${reservas.map(s=>`<div class="client ${overdue.some(o=>o.id===s.id)?'overdue':''}"><b>${fullName(s)}</b><div class="muted">Ingresa ${s.contract_start||'-'} · ${roomName(s.room_id)} · ${fmtMoney(s.monthly_amount||0)}</div><div>${contractStatusControl(s)}</div><div>${s.notes||''}</div></div>`).join('')||'<p class="muted">Sin reservas pendientes.</p>'}</div><div class="panel"><h3>Reservas vencidas</h3>${overdue.map(s=>`<div class="depositWarn overdue"><b>${fullName(s)}</b><div class="muted">Ingreso previsto ${s.contract_start} · ${roomName(s.room_id)}</div><button class="light" onclick="activateStudent('${s.id}')">Marcar ingresó</button> <button class="danger" onclick="deleteStudent('${s.id}')">No vino / borrar</button></div>`).join('')||'<p class="muted">Sin reservas vencidas.</p>'}</div><div class="panel"><h3>Garantías pendientes</h3>${depPend.map(s=>`<div class="depositWarn"><b>${fullName(s)}</b><div class="muted">Pendiente ${fmtMoney(depositPending(s))} de ${fmtMoney(depositTotal(s))} · entregado ${fmtMoney(depositPaid(s))}</div><div class="muted">${roomName(s.room_id)} · ${s.status||''}</div></div>`).join('')||'<p class="muted">Sin garantías pendientes.</p>'}</div><div class="panel"><h3>Próximos egresos</h3>${vencen.map(s=>`<div class="client"><b>${fullName(s)}</b><div class="muted">Hasta ${s.contract_end||'-'} · ${roomName(s.room_id)}</div><div>${contractStatusControl(s)}</div><div>${s.notes||''}</div></div>`).join('')||'<p class="muted">Sin estudiantes activos.</p>'}</div></div>`;
+}
+window.renderAterSearch=(q)=>{q=(q||'').toLowerCase().trim();const box=$('aterSearchResults');if(!box)return;if(!q){box.innerHTML='';return}const rows=state.aterStudents.filter(s=>(`${fullName(s)} ${s.document||''} ${s.phone||''} ${s.email||''}`).toLowerCase().includes(q)).slice(0,12);box.innerHTML=rows.map(s=>`<div class="searchResult"><b>${fullName(s)}</b><div class="muted">${s.status||''} · ${roomName(s.room_id)} · ${s.phone||''}</div><div class="muted">Contrato ${s.contract_start||'-'} a ${s.contract_end||'-'}</div></div>`).join('')||'<p class="muted">Sin resultados.</p>'}
+function renderVisits(){
+  $('aVisitsBox').innerHTML=`<h3>Agregar visita guiada</h3><div class="grid2"><input id="vName" placeholder="Nombre interesado"><input id="vPhone" placeholder="Teléfono"><input id="vEmail" placeholder="Email"><input id="vOrigin" placeholder="País / ciudad"><input id="vCareer" placeholder="Carrera / motivo"><input id="vAt" type="datetime-local"><select id="vStatus"><option value="pendiente">Pendiente</option><option value="confirmada">Confirmada</option><option value="visitó">Visitó</option><option value="reservó">Reservó</option><option value="canceló">Canceló</option><option value="no vino">No vino</option></select><textarea id="vNotes" class="obs full" placeholder="Comentarios / observaciones"></textarea><button onclick="addVisit()">Agregar visita</button></div><h3>Visitas</h3>${state.aterVisits.map(v=>`<div class="client"><b>${v.name}</b><div class="muted">${v.visit_at?new Date(v.visit_at).toLocaleString('es-UY'):''} · ${v.phone||''} · ${v.origin||''}</div><div class="grid2" style="margin-top:8px"><select onchange="updateVisit('${v.id}','status',this.value)">${['pendiente','confirmada','visitó','reservó','canceló','no vino'].map(x=>`<option ${v.status===x?'selected':''}>${x}</option>`).join('')}</select><button class="light" onclick="moveVisitToWaitlist('${v.id}')">Pasar a espera</button><textarea class="obs full" onchange="updateVisit('${v.id}','notes',this.value)" placeholder="Observaciones">${v.notes||''}</textarea><button class="danger" onclick="deleteVisit('${v.id}')">Borrar</button></div></div>`).join('')||'<p class="muted">Sin visitas cargadas.</p>'}`;
+}
+function monthOptions(selected=''){
+  const opts=['Flexible','Enero','Febrero','Marzo','Abril','Mayo','Junio','Julio','Agosto','Setiembre','Octubre','Noviembre','Diciembre','Segundo semestre'];
+  return opts.map(x=>`<option value="${x}" ${selected===x?'selected':''}>${x}</option>`).join('')
+}
+function roomPreferenceOptions(selected=''){
+  const opts=['Flexible','Triple','Triple con baño','Doble','Doble con baño','Doble Plus'];
+  return opts.map(x=>`<option value="${x}" ${selected===x?'selected':''}>${x}</option>`).join('')
+}
+function renderWaitlist(){
+  const list=[...state.aterWaitlist].sort((a,b)=>(a.position||9999)-(b.position||9999));
+  $('aWaitlistBox').innerHTML=`<h3>Agregar interesado a lista de espera</h3><div class="grid2"><input id="wName" placeholder="Nombre interesado"><input id="wPhone" placeholder="Teléfono"><input id="wEmail" placeholder="Email"><input id="wOrigin" placeholder="País / ciudad"><select id="wDesiredYear"><option value="2026">Ingreso deseado: 2026</option><option value="2027">Ingreso deseado: 2027</option><option value="2028">Ingreso deseado: 2028</option><option value="flexible">Flexible</option></select><select id="wDesiredMonth">${monthOptions()}</select><select id="wRoomPref">${roomPreferenceOptions()}</select><select id="wPriority"><option value="media">Prioridad media</option><option value="alta">Prioridad alta</option><option value="baja">Prioridad baja</option></select><select id="wSource"><option value="consulta">Consulta</option><option value="visita">Visita</option><option value="referido">Referido</option></select><select id="wStatus"><option value="espera">En espera</option><option value="contactado">Contactado</option><option value="reservado">Reservado</option><option value="descartado">Descartado</option></select><textarea id="wNotes" class="obs full" placeholder="Comentarios / observaciones"></textarea><button onclick="addWait()">Agregar a espera</button></div><h3>Lista de espera</h3>${list.map((w,i)=>`<div class="waitItem"><b>#${w.position||i+1}</b><div><b>${w.name}</b><div class="muted">${w.phone||''} · ${w.email||''} · ${w.source||''}</div><div class="muted">Ingreso deseado: ${w.desired_year||'-'} ${w.desired_month||''} · ${w.room_preference||'Flexible'} · Prioridad ${w.priority||'media'}</div><div>${w.notes||''}</div></div><select onchange="updateWait('${w.id}','status',this.value)">${['espera','contactado','reservado','ingresó','descartado'].map(x=>`<option ${w.status===x?'selected':''}>${x}</option>`).join('')}</select><div class="actions"><button class="light" onclick="moveWait('${w.id}',-1)">↑</button><button class="light" onclick="moveWait('${w.id}',1)">↓</button><button class="light" onclick="startReservationFromWait('${w.id}')">Reservar</button><button class="danger" onclick="deleteWait('${w.id}')">Borrar</button></div></div>`).join('')||'<p class="muted">Sin interesados en espera.</p>'}`;
+}
+function roomOptions(selectedId='') {return '<option value="">Sin habitación</option>'+state.aterRooms.map(r=>`<option value="${r.id}" ${selectedId===r.id?'selected':''}>Hab. ${r.room_number} · ${roomType(r)}</option>`).join('')}
+function occupancyIcons(r){const occ=roomOccupants(r.id).length;const cap=roomCapacity(r);return '👤'.repeat(Math.min(occ,cap))+'⬜'.repeat(Math.max(0,cap-occ))}
+function roomStatusClass(r){const occ=roomOccupants(r.id).length; if(occ<=0)return 'empty'; if(occ>=roomCapacity(r))return 'full'; return 'partial'}
+function renderRooms(){
+  const rooms=[...state.aterRooms].sort((a,b)=>Number(a.room_number)-Number(b.room_number));
+  if(!selectedAterRoom && rooms.length) selectedAterRoom=rooms[0].id;
+  const selected=rooms.find(r=>r.id===selectedAterRoom) || rooms[0];
+  const typeOptions=['Triple baño compartido','Doble baño compartido','Doble plus con baño','Doble con baño privado','Triple con baño privado'];
+  const visual=rooms.map(r=>{let occ=roomOccupants(r.id);let free=Math.max(0,roomCapacity(r)-occ.length);let status=roomStatusClass(r);let lbl=status==='full'?'Completa':(status==='partial'?'Con cupos':'Vacía');return `<div class="roomTile ${status} ${selected?.id===r.id?'active':''}" onclick="selectAterRoom('${r.id}')"><div class="roomNum">Hab. ${r.room_number}</div><b>${roomType(r)}</b><div class="occupancyIcons">${occupancyIcons(r)}</div><div class="roomMeta">Capacidad ${roomCapacity(r)} · ${free} libre(s)</div><span class="statusRoom ${status}">${lbl}</span><div class="roomMeta">${roomPriceLabel(r)} por persona</div></div>`}).join('');
+  const detail=selected?(()=>{let occ=roomOccupants(selected.id);let free=Math.max(0,roomCapacity(selected)-occ.length);let places=[];for(let i=0;i<roomCapacity(selected);i++){let st=occ[i];places.push(st?`<div class="client"><b>Lugar ${i+1}: ${fullName(st)}</b><div class="muted">Contrato hasta ${st.contract_end||'-'} · ${st.phone||''} · ${fmtMoney(st.monthly_amount||0)}</div></div>`:`<div class="client"><b>Lugar ${i+1}: Libre</b><div class="muted">Cupo disponible</div></div>`)}return `<div class="roomCard"><div class="roomHeader"><h3>Habitación ${selected.room_number}</h3><span class="badge ${free>0?'completada':'pendiente'}">${free} libre(s)</span></div><div class="muted">${roomType(selected)} · Capacidad ${roomCapacity(selected)} · ${roomPriceLabel(selected)} por persona</div><h4>Lugares</h4>${places.join('')}<h4>Editar habitación</h4><div class="grid2"><select id="roomTypeEdit" onchange="roomTypeChanged()">${typeOptions.map(x=>`<option value="${x}" ${roomType(selected)===x?'selected':''}>${x}</option>`).join('')}</select><input id="roomCapEdit" type="number" value="${roomCapacity(selected)}" placeholder="Capacidad"><input id="roomPriceEdit" type="number" value="${roomDefaultPrice(selected)}" placeholder="Precio base por persona"><input id="roomFloorEdit" placeholder="Piso / sector" value="${selected.floor||''}"><textarea id="roomNotesEdit" class="obs full" placeholder="Observaciones">${selected.notes||''}</textarea><button onclick="saveSelectedRoom()">Guardar habitación</button><button class="danger" onclick="deleteRoom('${selected.id}')">Borrar habitación</button></div></div>`})():'';
+  $('aRoomsBox').innerHTML=`<h3>Mapa de habitaciones</h3><p class="muted">Verde: completa · Amarillo: con cupos libres · Rojo: vacía. Hacé clic en una habitación para ver lugares y ocupantes.</p><div class="roomsVisual">${visual}</div>${detail}<h3>Agregar habitación</h3><div class="grid2"><input id="rNum" placeholder="Número / nombre"><select id="rType">${typeOptions.map(x=>`<option value="${x}">${x}</option>`).join('')}</select><select id="rCap"><option value="2">2 personas</option><option value="3">3 personas</option></select><input id="rPrice" type="number" placeholder="Precio base por persona"><input id="rFloor" placeholder="Piso / sector"><textarea id="rNotes" class="obs full" placeholder="Comentarios / observaciones"></textarea><button onclick="addRoom()">Agregar habitación</button></div>`;
+}
+window.roomTypeChanged=()=>{let t=$('roomTypeEdit')?.value;if($('roomPriceEdit')&&roomBasePrices[t])$('roomPriceEdit').value=roomBasePrices[t]}
+window.selectAterRoom=(id)=>{selectedAterRoom=id;renderRooms()}
+window.saveSelectedRoom=async()=>{if(!selectedAterRoom)return;await sb.from('aterpea_rooms').update({room_type:$('roomTypeEdit').value,capacity:Number($('roomCapEdit').value||0),monthly_price:Number($('roomPriceEdit').value||0),floor:$('roomFloorEdit').value,notes:$('roomNotesEdit').value}).eq('id',selectedAterRoom);await load(false)}
+function fld(label, html){return `<div class="field"><label>${label}</label>${html}</div>`}
+function studentForm(prefix,status='activo'){
+  return `<div class="formSection"><h4>Datos personales</h4><div class="grid2">${fld('Nombre',`<input id="${prefix}First" placeholder="Nombre">`)}${fld('Apellido',`<input id="${prefix}Last" placeholder="Apellido">`)}${fld('Documento / pasaporte',`<input id="${prefix}Doc" placeholder="Documento / pasaporte">`)}${fld('Fecha de nacimiento',`<input id="${prefix}Birth" type="date">`)}${fld('Nacionalidad',`<input id="${prefix}Nationality" placeholder="Nacionalidad">`)}</div></div><div class="formSection"><h4>Contacto</h4><div class="grid2">${fld('Teléfono',`<input id="${prefix}Phone" placeholder="Teléfono">`)}${fld('Email',`<input id="${prefix}Email" placeholder="Email">`)}${fld('Contacto de emergencia',`<input id="${prefix}Emergency" placeholder="Contacto emergencia">`)}</div></div><div class="formSection"><h4>Alojamiento y contrato</h4><div class="grid2">${fld('Habitación',`<select id="${prefix}Room" onchange="fillAmountFromRoom('${prefix}')">${roomOptions()}</select>`)}${fld('Fecha de ingreso',`<input id="${prefix}Start" type="date">`)}${fld('Fecha de fin de contrato',`<input id="${prefix}End" type="date">`)}${fld('Precio mensual',`<input id="${prefix}Amount" type="number" placeholder="Precio mensual">`)}${fld('Estado del contrato',`<select id="${prefix}ContractStatus"><option value="no_enviado">Contrato sin enviar</option><option value="enviado">Contrato enviado</option><option value="firmado">Contrato firmado</option></select>`)}</div></div><div class="formSection"><h4>Depósito de garantía</h4><div class="grid2">${fld('Depósito total',`<input id="${prefix}DepositTotal" type="number" placeholder="Depósito total">`)}${fld('Entregado hasta ahora',`<input id="${prefix}DepositPaid" type="number" placeholder="Depósito entregado hasta ahora">`)}</div></div><div class="formSection"><h4>Observaciones</h4><textarea id="${prefix}Notes" class="obs full" placeholder="Condiciones contractuales, comentarios u observaciones"></textarea><button onclick="addStudentFromForm('${prefix}','${status}')">Agregar ${status==='reservado'?'reserva':'estudiante'}</button></div>`
+}
+window.fillAmountFromRoom=(prefix)=>{let id=$(`${prefix}Room`)?.value;let r=state.aterRooms.find(x=>x.id===id);if(r&&$(`${prefix}Amount`)) $(`${prefix}Amount`).value=roomDefaultPrice(r)}
+function renderReservations(){
+  const reservas=state.aterStudents.filter(s=>s.status==='reservado').sort((a,b)=>(a.contract_start||'9999').localeCompare(b.contract_start||'9999'));
+  $('aReservationsBox').innerHTML=`<h3>Agregar reserva</h3><p class="muted">Cuando llegue la fecha de ingreso, al abrir la app la reserva pasa automáticamente a estudiante activo y queda asignada a su habitación.</p>${studentForm('res','reservado')}<h3>Reservas pendientes</h3><table class="miniTable"><tr><th>Estudiante</th><th>Ingreso</th><th>Habitación</th><th>Precio / depósito</th><th>Contrato</th><th>Acciones</th><th>Observaciones</th></tr>${reservas.map(s=>`<tr><td><b>${fullName(s)}</b><div class="muted">${s.phone||''} · ${s.email||''}</div></td><td><input type="date" value="${s.contract_start||''}" onchange="updateStudent('${s.id}','contract_start',this.value)"></td><td><select onchange="updateStudent('${s.id}','room_id',this.value)">${roomOptions(s.room_id)}</select></td><td><input class="moneyInput" type="number" value="${s.monthly_amount||0}" onchange="updateStudent('${s.id}','monthly_amount',Number(this.value||0))"><div class="muted">Total <input class="moneyInput" type="number" value="${depositTotal(s)}" onchange="updateStudent('${s.id}','deposit_total',Number(this.value||0))"></div><div class="muted">Entregó <input class="moneyInput" type="number" value="${depositPaid(s)}" onchange="updateStudent('${s.id}','deposit_paid',Number(this.value||0))"></div><b class="muted">Pendiente ${fmtMoney(depositPending(s))}</b></td><td>${contractStatusControl(s)}</td><td class="actions"><button class="light" onclick="activateStudent('${s.id}')">Ingresó</button><button class="danger" onclick="deleteStudent('${s.id}')">No vino / borrar</button></td><td><textarea class="obs" onchange="updateStudent('${s.id}','notes',this.value)">${s.notes||''}</textarea></td></tr>`).join('')||'<tr><td colspan="7" class="muted">Sin reservas pendientes.</td></tr>'}</table>`;
+}
+function renderStudents(){
+  const activos=state.aterStudents.filter(s=>s.status==='activo').sort((a,b)=>fullName(a).localeCompare(fullName(b)));
+  const egresados=state.aterStudents.filter(s=>s.status==='egresado').sort((a,b)=>fullName(a).localeCompare(fullName(b)));
+  $('aStudentsBox').innerHTML=`<h3>Agregar estudiante activo</h3>${studentForm('s','activo')}<h3>Estudiantes activos</h3><table class="miniTable"><tr><th>Estudiante</th><th>Habitación</th><th>Contrato</th><th>Precio / garantía</th><th>Estado</th><th>Observaciones</th><th>Acciones</th></tr>${activos.map(s=>`<tr><td><b>${fullName(s)}</b><div class="muted">${s.document||''} · ${s.phone||''}</div></td><td><select onchange="updateStudent('${s.id}','room_id',this.value)">${roomOptions(s.room_id)}</select></td><td><input type="date" value="${s.contract_start||''}" onchange="updateStudent('${s.id}','contract_start',this.value)"><br><input type="date" value="${s.contract_end||''}" onchange="updateStudent('${s.id}','contract_end',this.value)"><div style="margin-top:8px">${contractStatusControl(s)}</div></td><td><input class="moneyInput" type="number" value="${s.monthly_amount||0}" onchange="updateStudent('${s.id}','monthly_amount',Number(this.value||0))"><div class="muted">Depósito total <input class="moneyInput" type="number" value="${depositTotal(s)}" onchange="updateStudent('${s.id}','deposit_total',Number(this.value||0))"></div><div class="muted">Entregado <input class="moneyInput" type="number" value="${depositPaid(s)}" onchange="updateStudent('${s.id}','deposit_paid',Number(this.value||0))"></div><b class="muted">Pendiente ${fmtMoney(depositPending(s))}</b></td><td><select onchange="updateStudent('${s.id}','status',this.value)">${['activo','reservado','egresado'].map(x=>`<option ${s.status===x?'selected':''}>${x}</option>`).join('')}</select></td><td><textarea class="obs" onchange="updateStudent('${s.id}','notes',this.value)">${s.notes||''}</textarea></td><td class="actions"><button class="light" onclick="graduateStudent('${s.id}')">Se fue</button><button class="danger" onclick="deleteStudent('${s.id}')">Borrar</button></td></tr>`).join('')||'<tr><td colspan="7" class="muted">Sin estudiantes activos.</td></tr>'}</table><h3>Egresados / bajas</h3><table class="miniTable"><tr><th>Estudiante</th><th>Habitación anterior</th><th>Contrato</th><th>Garantía</th><th>Observaciones</th><th>Acciones</th></tr>${egresados.map(s=>`<tr><td><b>${fullName(s)}</b><div class="muted">${s.phone||''}</div></td><td>${roomName(s.room_id)}</td><td>${s.contract_start||'-'} a ${s.contract_end||'-'}<div>${contractStatusLabel(s)}</div></td><td class="muted">Pendiente ${fmtMoney(depositPending(s))}</td><td><textarea class="obs" onchange="updateStudent('${s.id}','notes',this.value)">${s.notes||''}</textarea></td><td><button class="danger" onclick="deleteStudent('${s.id}')">Borrar definitivo</button></td></tr>`).join('')||'<tr><td colspan="6" class="muted">Sin egresados cargados.</td></tr>'}</table>`;
+}
+async function nextWaitPosition(){return (state.aterWaitlist.reduce((m,w)=>Math.max(m,Number(w.position||0)),0)+1)}
+window.addVisit=async()=>{await sb.from('aterpea_visits').insert({name:$('vName').value,phone:$('vPhone').value,email:$('vEmail').value,origin:$('vOrigin').value,career:$('vCareer').value,visit_at:$('vAt').value||null,status:$('vStatus').value,notes:$('vNotes').value});await load(false)}
+window.updateVisit=async(id,field,value)=>{await sb.from('aterpea_visits').update({[field]:value}).eq('id',id);await load(false)}
+window.deleteVisit=async(id)=>{if(confirm('¿Borrar visita?')){await sb.from('aterpea_visits').delete().eq('id',id);await load(false)}}
+window.moveVisitToWaitlist=async(id)=>{let v=state.aterVisits.find(x=>x.id===id);if(!v)return;await sb.from('aterpea_waitlist').insert({position:await nextWaitPosition(),name:v.name,phone:v.phone,email:v.email,origin:v.origin,source:'visita',status:'espera',desired_year:'flexible',desired_month:'Flexible',room_preference:'Flexible',priority:'media',notes:v.notes});await sb.from('aterpea_visits').update({status:'visitó'}).eq('id',id);await load(false)}
+window.addWait=async()=>{await sb.from('aterpea_waitlist').insert({position:await nextWaitPosition(),name:$('wName').value,phone:$('wPhone').value,email:$('wEmail').value,origin:$('wOrigin').value,source:$('wSource').value,status:$('wStatus').value,desired_year:$('wDesiredYear').value,desired_month:$('wDesiredMonth').value,room_preference:$('wRoomPref').value,priority:$('wPriority').value,notes:$('wNotes').value});await load(false)}
+window.updateWait=async(id,field,value)=>{await sb.from('aterpea_waitlist').update({[field]:value}).eq('id',id);await load(false)}
+window.deleteWait=async(id)=>{if(confirm('¿Borrar de la lista de espera?')){await sb.from('aterpea_waitlist').delete().eq('id',id);await load(false)}}
+window.moveWait=async(id,delta)=>{let list=[...state.aterWaitlist].sort((a,b)=>(a.position||9999)-(b.position||9999));let i=list.findIndex(x=>x.id===id), j=i+delta;if(i<0||j<0||j>=list.length)return;let a=list[i],b=list[j];await sb.from('aterpea_waitlist').update({position:b.position}).eq('id',a.id);await sb.from('aterpea_waitlist').update({position:a.position}).eq('id',b.id);await load(false)}
+window.addRoom=async()=>{await sb.from('aterpea_rooms').insert({room_number:$('rNum').value,room_type:$('rType').value,capacity:Number($('rCap').value||2),monthly_price:Number($('rPrice').value||roomBasePrices[$('rType').value]||0),floor:$('rFloor').value,notes:$('rNotes').value});await load(false)}
+window.updateRoom=async(id,field,value)=>{await sb.from('aterpea_rooms').update({[field]:value}).eq('id',id);await load(false)}
+window.deleteRoom=async(id)=>{if(confirm('¿Borrar habitación?')){await sb.from('aterpea_rooms').delete().eq('id',id);await load(false)}}
+window.addStudentFromForm=async(prefix,status)=>{const depTotal=Number($(`${prefix}DepositTotal`).value||0);const depPaid=Number($(`${prefix}DepositPaid`).value||0);await sb.from('aterpea_students').insert({first_name:$(`${prefix}First`).value,last_name:$(`${prefix}Last`).value,document:$(`${prefix}Doc`).value,birth_date:$(`${prefix}Birth`).value||null,phone:$(`${prefix}Phone`).value,email:$(`${prefix}Email`).value,emergency_contact:$(`${prefix}Emergency`).value,nationality:$(`${prefix}Nationality`).value,room_id:$(`${prefix}Room`).value||null,contract_start:$(`${prefix}Start`).value||null,contract_end:$(`${prefix}End`).value||null,monthly_amount:Number($(`${prefix}Amount`).value||0),deposit_amount:depTotal,deposit_total:depTotal,deposit_paid:depPaid,contract_status:$(`${prefix}ContractStatus`).value,status,notes:$(`${prefix}Notes`).value});await load(false)}
+window.addStudent=async()=>addStudentFromForm('s','activo')
+window.updateStudent=async(id,field,value)=>{await sb.from('aterpea_students').update({[field]:value}).eq('id',id);await load(false)}
+window.activateStudent=async(id)=>{await sb.from('aterpea_students').update({status:'activo'}).eq('id',id);await load(false)}
+window.graduateStudent=async(id)=>{if(confirm('¿Marcar estudiante como egresado / se fue? Queda guardado en historial y libera el cupo.')){await sb.from('aterpea_students').update({status:'egresado'}).eq('id',id);await load(false)}}
+window.deleteStudent=async(id)=>{if(confirm('¿Borrar estudiante definitivamente?')){await sb.from('aterpea_students').delete().eq('id',id);await load(false)}}
+window.startReservationFromWait=async(id)=>{let w=state.aterWaitlist.find(x=>x.id===id);if(!w)return;await sb.from('aterpea_students').insert({first_name:w.name,last_name:'',phone:w.phone,email:w.email,nationality:w.origin,status:'reservado',contract_status:'no_enviado',notes:[w.notes, `Ingreso deseado: ${w.desired_year||'-'} ${w.desired_month||''}. Habitación buscada: ${w.room_preference||'Flexible'}.`].filter(Boolean).join('\n')});await sb.from('aterpea_waitlist').update({status:'reservado'}).eq('id',id);showAterpeaTab('reservations');await load(false)}
+
 function renderArchived(){let arr=state.clients.filter(c=>c.archived);$('archivedList').innerHTML=arr.length?arr.map(c=>`<div class="client archived"><b>${c.name}</b><div class="muted">${c.company_type||''}</div><button onclick="restoreClient('${c.id}')">Restaurar</button></div>`).join(''):'<p class="muted">No hay clientes archivados.</p>'}
 window.selectClient=id=>{state.selected=id;render()}
 $('month').value=new Date().toISOString().slice(0,7);$('month').onchange=()=>load(true);$('genMonth').onclick=()=>generateMonth(true);
@@ -186,6 +378,35 @@ window.applyTemplate=async(id)=>{let t=state.templates.find(x=>x.id===id); if(!t
 window.deleteTemplate=async(id)=>{if(confirm('¿Borrar esta tarea maestra? No borra tareas ya aplicadas a clientes.')){await sb.from('master_task_templates').delete().eq('id',id);await load(false)}}
 $('addTemplate').onclick=async()=>{await sb.from('master_task_templates').insert({name:$('tplName').value,description:$('tplDesc').value,frequency:$('tplFreq').value,due_day:Number($('tplDay').value||25),initial_status:$('tplStatus').value,priority:$('tplPrio').value,company_type:$('tplCompany').value||null});$('tplName').value='';$('tplDesc').value='';await load(false)}
 
+
+function renderUserRoles(){
+  const box=$('userRoleList');
+  if(!box) return;
+  if(isAterpeaOnly()){ box.innerHTML=''; return; }
+  const rows=state.userRoles||[];
+  box.innerHTML = '<h3>Usuarios cargados</h3>' + (rows.length? rows.map(u=>`
+    <div class="userRow">
+      <div><strong>${u.email||'Sin email'}</strong></div>
+      <select onchange="updateUserRole('${u.email}',this.value)">
+        <option value="admin" ${u.role==='admin'?'selected':''}>Admin</option>
+        <option value="aterpea" ${u.role==='aterpea'?'selected':''}>ATERPEA</option>
+      </select>
+      <button class="danger" onclick="removeUserRole('${u.email}')">Quitar</button>
+    </div>`).join('') : '<p class="muted">Todavía no hay usuarios con rol asignado.</p>');
+}
+window.updateUserRole=async(email,role)=>{ await sb.rpc('app_set_user_role',{p_email:email,p_role:role}); await load(false); }
+window.removeUserRole=async(email)=>{ if(confirm('¿Quitar el rol de este usuario?')){ await sb.rpc('app_remove_user_role',{p_email:email}); await load(false); } }
+$('addUserRole').onclick=async()=>{
+  const email=$('userEmail').value.trim(); const role=$('userRole').value;
+  if(!email){ $('userRoleMsg').textContent='Ingresá el email.'; return; }
+  $('userRoleMsg').textContent='Guardando...';
+  const {data,error}=await sb.rpc('app_set_user_role',{p_email:email,p_role:role});
+  if(error){ $('userRoleMsg').textContent=error.message; return; }
+  if(data===false){ $('userRoleMsg').textContent='No encontré ese email en Authentication > Users. Primero creá el usuario en Supabase.'; return; }
+  $('userEmail').value=''; $('userRoleMsg').textContent='Usuario actualizado.';
+  await load(false);
+};
+
 let realtimeTimer=null;
 function reloadSoon(autoGenerate=false){
   clearTimeout(realtimeTimer);
@@ -200,10 +421,44 @@ function setupRealtime(){
     .on('postgres_changes',{event:'*',schema:'public',table:'deleted_monthly_tasks'},()=>reloadSoon(false))
     .on('postgres_changes',{event:'*',schema:'public',table:'monthly_due_dates'},()=>reloadSoon(false))
     .on('postgres_changes',{event:'*',schema:'public',table:'master_task_templates'},()=>reloadSoon(false))
+    .on('postgres_changes',{event:'*',schema:'public',table:'aterpea_rooms'},()=>reloadSoon(false))
+    .on('postgres_changes',{event:'*',schema:'public',table:'aterpea_students'},()=>reloadSoon(false))
+    .on('postgres_changes',{event:'*',schema:'public',table:'aterpea_visits'},()=>reloadSoon(false))
+    .on('postgres_changes',{event:'*',schema:'public',table:'aterpea_waitlist'},()=>reloadSoon(false))
     .subscribe();
 }
-setupRealtime();
-load(true);
+
+async function startApp(){
+  const {data:{session}}=await sb.auth.getSession();
+  if(!session){showLogin();return;}
+  currentUser=session.user;
+  await loadRole();
+  $('loginScreen').classList.add('hidden');
+  $('appWrap').classList.remove('hidden');
+  setupRealtime();
+  await load(true);
+  if(isAterpeaOnly()) showMainTab('Aterpea');
+}
+function showLogin(){
+  $('appWrap').classList.add('hidden');
+  $('loginScreen').classList.remove('hidden');
+}
+async function loadRole(){
+  // Sistema simple: si el usuario no tiene rol cargado, queda como admin por defecto.
+  // La empleada debe tener un registro en user_roles con role='aterpea'.
+  const {data,error}=await sb.from('user_roles').select('role').eq('user_id',currentUser.id).maybeSingle();
+  if(error){ console.warn('No se pudo leer user_roles, se usa admin por defecto', error); currentRole='admin'; return; }
+  currentRole=data?.role || 'admin';
+}
+$('loginBtn').onclick=async()=>{
+  $('loginMsg').textContent='Ingresando...';
+  const {error}=await sb.auth.signInWithPassword({email:$('loginEmail').value.trim(),password:$('loginPass').value});
+  if(error){$('loginMsg').textContent=error.message;return;}
+  location.reload();
+};
+$('logoutBtn').onclick=async()=>{await sb.auth.signOut();location.reload();};
+sb.auth.onAuthStateChange((_event,session)=>{ if(!session && currentUser) location.reload(); });
+startApp();
 </script>
 </body>
 </html>
