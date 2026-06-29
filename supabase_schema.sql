@@ -537,3 +537,45 @@ as $$
   where public.app_current_role() = 'admin'
   order by u.email
 $$;
+
+
+-- FIX v18: columnas necesarias para estudiantes ATERPEA si la tabla ya existía de una versión anterior.
+alter table public.aterpea_students add column if not exists first_name text;
+alter table public.aterpea_students add column if not exists last_name text;
+alter table public.aterpea_students add column if not exists document text;
+alter table public.aterpea_students add column if not exists birth_date date;
+alter table public.aterpea_students add column if not exists phone text;
+alter table public.aterpea_students add column if not exists email text;
+alter table public.aterpea_students add column if not exists emergency_contact text;
+alter table public.aterpea_students add column if not exists nationality text;
+alter table public.aterpea_students add column if not exists room_id uuid references public.aterpea_rooms(id) on delete set null;
+alter table public.aterpea_students add column if not exists contract_start date;
+alter table public.aterpea_students add column if not exists contract_end date;
+alter table public.aterpea_students add column if not exists monthly_amount numeric default 0;
+alter table public.aterpea_students add column if not exists deposit_amount numeric default 0;
+alter table public.aterpea_students add column if not exists deposit_total numeric default 0;
+alter table public.aterpea_students add column if not exists deposit_paid numeric default 0;
+alter table public.aterpea_students add column if not exists contract_status text default 'no_enviado';
+alter table public.aterpea_students add column if not exists status text default 'activo';
+alter table public.aterpea_students add column if not exists notes text;
+alter table public.aterpea_students add column if not exists created_at timestamptz default now();
+
+-- OPCIONAL: detectar estudiantes duplicados exactos (mismo nombre, apellido, habitación, estado y fecha de inicio)
+-- Ejecutar solo para revisar. No borra nada.
+-- select lower(coalesce(first_name,'')) as nombre, lower(coalesce(last_name,'')) as apellido, room_id, status, contract_start, count(*)
+-- from public.aterpea_students
+-- group by 1,2,3,4,5
+-- having count(*) > 1;
+
+-- OPCIONAL: borrar duplicados exactos dejando el más antiguo.
+-- Usar solo si confirmaste que son duplicados reales.
+-- with d as (
+--   select id, row_number() over (
+--     partition by lower(coalesce(first_name,'')), lower(coalesce(last_name,'')), room_id, status, contract_start
+--     order by created_at nulls last, id
+--   ) rn
+--   from public.aterpea_students
+-- )
+-- delete from public.aterpea_students s
+-- using d
+-- where s.id = d.id and d.rn > 1;

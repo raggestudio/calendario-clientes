@@ -295,21 +295,106 @@ function renderStudents(){
   $('aStudentsBox').innerHTML=`<h3>Agregar estudiante activo</h3>${studentForm('s','activo')}<h3>Estudiantes activos</h3><table class="miniTable"><tr><th>Estudiante</th><th>Habitación</th><th>Contrato</th><th>Precio / garantía</th><th>Estado</th><th>Observaciones</th><th>Acciones</th></tr>${activos.map(s=>`<tr><td><b>${fullName(s)}</b><div class="muted">${s.document||''} · ${s.phone||''}</div></td><td><select onchange="updateStudent('${s.id}','room_id',this.value)">${roomOptions(s.room_id)}</select></td><td><input type="date" value="${s.contract_start||''}" onchange="updateStudent('${s.id}','contract_start',this.value)"><br><input type="date" value="${s.contract_end||''}" onchange="updateStudent('${s.id}','contract_end',this.value)"><div style="margin-top:8px">${contractStatusControl(s)}</div></td><td><input class="moneyInput" type="number" value="${s.monthly_amount||0}" onchange="updateStudent('${s.id}','monthly_amount',Number(this.value||0))"><div class="muted">Depósito total <input class="moneyInput" type="number" value="${depositTotal(s)}" onchange="updateStudent('${s.id}','deposit_total',Number(this.value||0))"></div><div class="muted">Entregado <input class="moneyInput" type="number" value="${depositPaid(s)}" onchange="updateStudent('${s.id}','deposit_paid',Number(this.value||0))"></div><b class="muted">Pendiente ${fmtMoney(depositPending(s))}</b></td><td><select onchange="updateStudent('${s.id}','status',this.value)">${['activo','reservado','egresado'].map(x=>`<option ${s.status===x?'selected':''}>${x}</option>`).join('')}</select></td><td><textarea class="obs" onchange="updateStudent('${s.id}','notes',this.value)">${s.notes||''}</textarea></td><td class="actions"><button class="light" onclick="graduateStudent('${s.id}')">Se fue</button><button class="danger" onclick="deleteStudent('${s.id}')">Borrar</button></td></tr>`).join('')||'<tr><td colspan="7" class="muted">Sin estudiantes activos.</td></tr>'}</table><h3>Egresados / bajas</h3><table class="miniTable"><tr><th>Estudiante</th><th>Habitación anterior</th><th>Contrato</th><th>Garantía</th><th>Observaciones</th><th>Acciones</th></tr>${egresados.map(s=>`<tr><td><b>${fullName(s)}</b><div class="muted">${s.phone||''}</div></td><td>${roomName(s.room_id)}</td><td>${s.contract_start||'-'} a ${s.contract_end||'-'}<div>${contractStatusLabel(s)}</div></td><td class="muted">Pendiente ${fmtMoney(depositPending(s))}</td><td><textarea class="obs" onchange="updateStudent('${s.id}','notes',this.value)">${s.notes||''}</textarea></td><td><button class="danger" onclick="deleteStudent('${s.id}')">Borrar definitivo</button></td></tr>`).join('')||'<tr><td colspan="6" class="muted">Sin egresados cargados.</td></tr>'}</table>`;
 }
 async function nextWaitPosition(){return (state.aterWaitlist.reduce((m,w)=>Math.max(m,Number(w.position||0)),0)+1)}
-window.addVisit=async()=>{await sb.from('aterpea_visits').insert({name:$('vName').value,phone:$('vPhone').value,email:$('vEmail').value,origin:$('vOrigin').value,career:$('vCareer').value,visit_at:$('vAt').value||null,status:$('vStatus').value,notes:$('vNotes').value});await load(false)}
+window.addVisit=async()=>{const {error}=await sb.from('aterpea_visits').insert({name:$('vName').value,phone:$('vPhone').value,email:$('vEmail').value,origin:$('vOrigin').value,career:$('vCareer').value,visit_at:$('vAt').value||null,status:$('vStatus').value,notes:$('vNotes').value});if(error){alert('No se pudo agregar la visita: '+error.message);return}await load(false)}
 window.updateVisit=async(id,field,value)=>{await sb.from('aterpea_visits').update({[field]:value}).eq('id',id);await load(false)}
 window.deleteVisit=async(id)=>{if(confirm('¿Borrar visita?')){await sb.from('aterpea_visits').delete().eq('id',id);await load(false)}}
 window.moveVisitToWaitlist=async(id)=>{let v=state.aterVisits.find(x=>x.id===id);if(!v)return;await sb.from('aterpea_waitlist').insert({position:await nextWaitPosition(),name:v.name,phone:v.phone,email:v.email,origin:v.origin,source:'visita',status:'espera',desired_year:'flexible',desired_month:'Flexible',room_preference:'Flexible',priority:'media',notes:v.notes});await sb.from('aterpea_visits').update({status:'visitó'}).eq('id',id);await load(false)}
-window.addWait=async()=>{await sb.from('aterpea_waitlist').insert({position:await nextWaitPosition(),name:$('wName').value,phone:$('wPhone').value,email:$('wEmail').value,origin:$('wOrigin').value,source:$('wSource').value,status:$('wStatus').value,desired_year:$('wDesiredYear').value,desired_month:$('wDesiredMonth').value,room_preference:$('wRoomPref').value,priority:$('wPriority').value,notes:$('wNotes').value});await load(false)}
+window.addWait=async()=>{const {error}=await sb.from('aterpea_waitlist').insert({position:await nextWaitPosition(),name:$('wName').value,phone:$('wPhone').value,email:$('wEmail').value,origin:$('wOrigin').value,source:$('wSource').value,status:$('wStatus').value,desired_year:$('wDesiredYear').value,desired_month:$('wDesiredMonth').value,room_preference:$('wRoomPref').value,priority:$('wPriority').value,notes:$('wNotes').value});if(error){alert('No se pudo agregar a lista de espera: '+error.message);return}await load(false)}
 window.updateWait=async(id,field,value)=>{await sb.from('aterpea_waitlist').update({[field]:value}).eq('id',id);await load(false)}
 window.deleteWait=async(id)=>{if(confirm('¿Borrar de la lista de espera?')){await sb.from('aterpea_waitlist').delete().eq('id',id);await load(false)}}
 window.moveWait=async(id,delta)=>{let list=[...state.aterWaitlist].sort((a,b)=>(a.position||9999)-(b.position||9999));let i=list.findIndex(x=>x.id===id), j=i+delta;if(i<0||j<0||j>=list.length)return;let a=list[i],b=list[j];await sb.from('aterpea_waitlist').update({position:b.position}).eq('id',a.id);await sb.from('aterpea_waitlist').update({position:a.position}).eq('id',b.id);await load(false)}
 window.addRoom=async()=>{await sb.from('aterpea_rooms').insert({room_number:$('rNum').value,room_type:$('rType').value,capacity:Number($('rCap').value||2),monthly_price:Number($('rPrice').value||roomBasePrices[$('rType').value]||0),floor:$('rFloor').value,notes:$('rNotes').value});await load(false)}
 window.updateRoom=async(id,field,value)=>{await sb.from('aterpea_rooms').update({[field]:value}).eq('id',id);await load(false)}
 window.deleteRoom=async(id)=>{if(confirm('¿Borrar habitación?')){await sb.from('aterpea_rooms').delete().eq('id',id);await load(false)}}
-window.addStudentFromForm=async(prefix,status)=>{const depTotal=Number($(`${prefix}DepositTotal`).value||0);const depPaid=Number($(`${prefix}DepositPaid`).value||0);await sb.from('aterpea_students').insert({first_name:$(`${prefix}First`).value,last_name:$(`${prefix}Last`).value,document:$(`${prefix}Doc`).value,birth_date:$(`${prefix}Birth`).value||null,phone:$(`${prefix}Phone`).value,email:$(`${prefix}Email`).value,emergency_contact:$(`${prefix}Emergency`).value,nationality:$(`${prefix}Nationality`).value,room_id:$(`${prefix}Room`).value||null,contract_start:$(`${prefix}Start`).value||null,contract_end:$(`${prefix}End`).value||null,monthly_amount:Number($(`${prefix}Amount`).value||0),deposit_amount:depTotal,deposit_total:depTotal,deposit_paid:depPaid,contract_status:$(`${prefix}ContractStatus`).value,status,notes:$(`${prefix}Notes`).value});await load(false)}
+
+function normalizeText(v){return (v||'').toString().trim().toLowerCase().replace(/\s+/g,' ')}
+function roomIsFullFor(roomId, ignoreStudentId=null){
+  if(!roomId) return false;
+  const room=state.aterRooms.find(r=>r.id===roomId);
+  if(!room) return false;
+  const occ=state.aterStudents.filter(s=>s.status==='activo' && s.room_id===roomId && s.id!==ignoreStudentId).length;
+  return occ>=roomCapacity(room);
+}
+function duplicateStudentExists(payload){
+  const fn=normalizeText(payload.first_name), ln=normalizeText(payload.last_name), ph=normalizeText(payload.phone), doc=normalizeText(payload.document);
+  return state.aterStudents.some(s=>
+    s.status===payload.status &&
+    (s.room_id||'')===(payload.room_id||'') &&
+    normalizeText(s.first_name)===fn &&
+    normalizeText(s.last_name)===ln &&
+    (!ph || normalizeText(s.phone)===ph) &&
+    (!doc || normalizeText(s.document)===doc) &&
+    (s.contract_start||'')===(payload.contract_start||'')
+  );
+}
+window.addStudentFromForm=async(prefix,status)=>{
+  const first=($(`${prefix}First`)?.value||'').trim();
+  const last=($(`${prefix}Last`)?.value||'').trim();
+  if(!first && !last){ alert('Cargá al menos el nombre o apellido del estudiante.'); return; }
+  const btn=event?.target; if(btn){btn.disabled=true; btn.textContent='Guardando...'}
+  const depTotal=Number($(`${prefix}DepositTotal`).value||0);
+  const depPaid=Number($(`${prefix}DepositPaid`).value||0);
+  const payload={
+    first_name:first,
+    last_name:last,
+    document:$(`${prefix}Doc`).value||null,
+    birth_date:$(`${prefix}Birth`).value||null,
+    phone:$(`${prefix}Phone`).value||null,
+    email:$(`${prefix}Email`).value||null,
+    emergency_contact:$(`${prefix}Emergency`).value||null,
+    nationality:$(`${prefix}Nationality`).value||null,
+    room_id:$(`${prefix}Room`).value||null,
+    contract_start:$(`${prefix}Start`).value||null,
+    contract_end:$(`${prefix}End`).value||null,
+    monthly_amount:Number($(`${prefix}Amount`).value||0),
+    deposit_amount:depTotal,
+    deposit_total:depTotal,
+    deposit_paid:depPaid,
+    contract_status:$(`${prefix}ContractStatus`).value,
+    status,
+    notes:$(`${prefix}Notes`).value||null
+  };
+  if(status==='activo' && payload.room_id && roomIsFullFor(payload.room_id)){
+    if(btn){btn.disabled=false; btn.textContent=`Agregar ${status==='reservado'?'reserva':'estudiante'}`}
+    alert('Esa habitación ya está completa. No se puede agregar otro estudiante ahí.');
+    return;
+  }
+  if(duplicateStudentExists(payload)){
+    if(btn){btn.disabled=false; btn.textContent=`Agregar ${status==='reservado'?'reserva':'estudiante'}`}
+    alert('Ese estudiante ya está cargado en esa habitación/estado. Revisá la lista antes de volver a agregarlo.');
+    return;
+  }
+  const {error}=await sb.from('aterpea_students').insert(payload);
+  if(btn){btn.disabled=false; btn.textContent=`Agregar ${status==='reservado'?'reserva':'estudiante'}`}
+  if(error){
+    console.error('Error agregando estudiante', error, payload);
+    alert('No se pudo agregar el estudiante. Error: '+(error.message||JSON.stringify(error))+'\n\nSi aparece una columna faltante, corré el supabase_schema.sql de la última versión.');
+    return;
+  }
+  await load(false);
+  alert(status==='reservado'?'Reserva agregada correctamente.':'Estudiante agregado correctamente.');
+}
 window.addStudent=async()=>addStudentFromForm('s','activo')
-window.updateStudent=async(id,field,value)=>{await sb.from('aterpea_students').update({[field]:value}).eq('id',id);await load(false)}
-window.activateStudent=async(id)=>{await sb.from('aterpea_students').update({status:'activo'}).eq('id',id);await load(false)}
+window.updateStudent=async(id,field,value)=>{
+  const current=state.aterStudents.find(s=>s.id===id);
+  if(field==='room_id' && value && current?.status==='activo' && roomIsFullFor(value,id)){
+    alert('Esa habitación ya está completa. Elegí otra habitación o liberá un cupo.');
+    await load(false); return;
+  }
+  const {error}=await sb.from('aterpea_students').update({[field]:value}).eq('id',id);
+  if(error){alert('No se pudo actualizar: '+error.message);return}
+  await load(false)
+}
+window.activateStudent=async(id)=>{
+  const s=state.aterStudents.find(x=>x.id===id);
+  if(s?.room_id && roomIsFullFor(s.room_id,id)){
+    alert('No se puede activar: la habitación asignada ya está completa. Cambiá la habitación o liberá un cupo.');
+    return;
+  }
+  const {error}=await sb.from('aterpea_students').update({status:'activo'}).eq('id',id);
+  if(error){alert('No se pudo activar: '+error.message);return}
+  await load(false)
+}
 window.graduateStudent=async(id)=>{if(confirm('¿Marcar estudiante como egresado / se fue? Queda guardado en historial y libera el cupo.')){await sb.from('aterpea_students').update({status:'egresado'}).eq('id',id);await load(false)}}
 window.deleteStudent=async(id)=>{if(confirm('¿Borrar estudiante definitivamente?')){await sb.from('aterpea_students').delete().eq('id',id);await load(false)}}
 window.startReservationFromWait=async(id)=>{let w=state.aterWaitlist.find(x=>x.id===id);if(!w)return;await sb.from('aterpea_students').insert({first_name:w.name,last_name:'',phone:w.phone,email:w.email,nationality:w.origin,status:'reservado',contract_status:'no_enviado',notes:[w.notes, `Ingreso deseado: ${w.desired_year||'-'} ${w.desired_month||''}. Habitación buscada: ${w.room_preference||'Flexible'}.`].filter(Boolean).join('\n')});await sb.from('aterpea_waitlist').update({status:'reservado'}).eq('id',id);showAterpeaTab('reservations');await load(false)}
