@@ -198,6 +198,7 @@ function roomType(r){return r.room_type || roomDefaults[String(r.room_number)]?.
 function roomCapacity(r){return Number(r.capacity || roomDefaults[String(r.room_number)]?.[1] || 0)}
 function roomDefaultPrice(r){return Number(r.monthly_price || roomBasePrices[roomType(r)] || 0)}
 function roomPriceLabel(r){let n=roomDefaultPrice(r); return n?fmtMoney(n):''}
+function roomName(roomId){const r=state.aterRooms.find(x=>x.id===roomId); return r ? `Hab. ${r.room_number}` : 'Sin habitación'}
 function fullName(st){return `${st.first_name||''} ${st.last_name||''}`.trim()}
 function roomOccupants(roomId){return state.aterStudents.filter(s=>s.room_id===roomId&&s.status==='activo')}
 function todayISO(){return new Date().toISOString().slice(0,10)}
