@@ -145,7 +145,7 @@ async function generateMonth(showAlert=true){
 }
 function activeClients(){return state.clients.filter(c=>!c.archived)}
 function render(){renderTabs(); if(isAterpeaOnly()){renderAterpea(); showMainTab('Aterpea'); return;} renderCards();renderClients();renderSummary();renderUrgent();renderDetail();renderGeneral();renderDueDates();renderArchived();renderTemplates(); renderUserRoles();renderAterpea();}
-function showMainTab(x){if(isAterpeaOnly()) x='Aterpea'; ['dashboard','general','duedates','archived','config','aterpea'].forEach(s=>$(s).classList.add('hidden'));$(x==='DueDates'?'duedates':x.toLowerCase()).classList.remove('hidden');$('clientLayout').classList.toggle('hidden',x==='Aterpea'||x==='General'||x==='DueDates'||x==='Archived'||x==='Config'||isAterpeaOnly());document.querySelectorAll('.tabs button').forEach(b=>b.classList.remove('active'));$('tab'+x)?.classList.add('active')}
+function showMainTab(x){if(isAterpeaOnly()) x='Aterpea'; ['dashboard','general','duedates','archived','config','aterpea'].forEach(s=>$(s).classList.add('hidden'));$(x==='DueDates'?'duedates':x.toLowerCase()).classList.remove('hidden');$('clientLayout').classList.toggle('hidden',x==='Aterpea'||x==='General'||x==='DueDates'||x==='Archived'||x==='Config'||isAterpeaOnly());document.querySelectorAll('.tabs button').forEach(b=>b.classList.remove('active'));$('tab'+x)?.classList.add('active'); if(x==='Aterpea') showAterpeaTab(selectedAterTab||'panel')}
 function renderTabs(){['Dashboard','General','DueDates','Archived','Config','Aterpea'].forEach(x=>{const b=$('tab'+x); if(!b)return; b.onclick=()=>showMainTab(x); b.style.display=isAterpeaOnly() && x!=='Aterpea'?'none':'';}); if($('userRoleBadge')) $('userRoleBadge').textContent=isAterpeaOnly()?'Acceso: solo ATERPEA':'Acceso: administrador'; const m=document.querySelector('.month'); if(m) m.style.display=isAterpeaOnly()?'none':''; const h=document.querySelector('.top h1'); if(h) h.textContent=isAterpeaOnly()?'ATERPEA · Residencia estudiantil':'Calendario de Clientes';}
 function renderCards(){let active=activeClients();let ts=state.tasks.filter(t=>active.some(c=>c.id===t.client_id));let open=ts.filter(t=>t.status!=='completada');$('cClients').textContent=active.length;$('cPend').textContent=ts.filter(t=>t.status==='pendiente').length;$('cProc').textContent=ts.filter(t=>t.status==='proceso').length;$('cComp').textContent=ts.filter(t=>t.status==='completada').length;$('cObs').textContent=ts.filter(t=>t.status==='observada').length;$('cOver').textContent=open.filter(t=>daysTo(t.due_date)<0).length;$('cToday').textContent=open.filter(t=>daysTo(t.due_date)===0).length;$('cWeek').textContent=open.filter(t=>daysTo(t.due_date)>0&&daysTo(t.due_date)<=7).length;let fees=state.fees.filter(f=>active.some(c=>c.id===f.client_id));let pending=fees.reduce((a,f)=>a+Math.max(0,Number(f.amount||0)-Number(f.paid_amount||0)),0);let total=fees.reduce((a,f)=>a+Number(f.amount||0),0);let paid=fees.reduce((a,f)=>a+Number(f.paid_amount||0),0);let pct=total?Math.min(100,Math.round(paid*100/total)):0;$('cFees').textContent=fmtMoney(pending);$('cFeesTotal').textContent='sobre '+fmtMoney(total);$('cFeeBar').style.width=pct+'%';$('cFeePct').textContent=pct+'% cobrado'}
 function renderClients(){$('clients').innerHTML=activeClients().map(c=>`<div class="client ${state.selected===c.id?'active':''}" onclick="selectClient('${c.id}')"><strong>${c.name}</strong><div class="muted">${c.company_type||''} · ${fmtMoney(c.fee_amount,c.fee_currency)}</div></div>`).join('')}
@@ -186,6 +186,7 @@ window.saveDueDate=async(encName)=>{
 }
 
 let selectedAterRoom=null;
+let selectedAterTab='panel';
 const roomDefaults={
   '1':['Triple baño compartido',3], '4':['Triple baño compartido',3], '7':['Triple baño compartido',3],
   '2':['Doble baño compartido',2], '3':['Doble baño compartido',2], '5':['Doble baño compartido',2], '6':['Doble baño compartido',2], '8':['Doble baño compartido',2], '9':['Doble baño compartido',2],
@@ -229,10 +230,21 @@ function renderAterpea(){
   const capacity=rooms.reduce((a,r)=>a+roomCapacity(r),0);
   const depPending=state.aterStudents.filter(s=>['activo','reservado'].includes(s.status||'activo')).reduce((a,s)=>a+depositPending(s),0);
   $('aRooms').textContent=rooms.length; if($('aCapacity')) $('aCapacity').textContent=capacity; $('aActive').textContent=students.length; if($('aReserved')) $('aReserved').textContent=reserved.length; $('aFree').textContent=Math.max(0,capacity-students.length-reserved.length); $('aWait').textContent=wait.length; $('aVisits').textContent=pendingVisits.length; if($('aDepositPending')) $('aDepositPending').textContent=fmtMoney(depPending);
-  renderAterpeaPanel(); renderVisits(); renderWaitlist(); renderRooms();renderReservations();renderStudents();
+  const safeRender=(name,fn)=>{try{fn()}catch(e){console.error('Error renderizando ATERPEA '+name,e); const id={panel:'aPanel',visits:'aVisitsBox',waitlist:'aWaitlistBox',rooms:'aRoomsBox',reservations:'aReservationsBox',students:'aStudentsBox'}[name]; if($(id)) $(id).innerHTML=`<div class="depositWarn"><b>Error al cargar esta pestaña.</b><br><span class="muted">${e.message||e}</span></div>`;}};
+  safeRender('panel',renderAterpeaPanel);
+  safeRender('visits',renderVisits);
+  safeRender('waitlist',renderWaitlist);
+  safeRender('rooms',renderRooms);
+  safeRender('reservations',renderReservations);
+  safeRender('students',renderStudents);
+  showAterpeaTab(selectedAterTab||'panel');
 }
-function showAterpeaTab(tab){
-  ['panel','visits','waitlist','rooms','reservations','students'].forEach(x=>{const box=$(x==='panel'?'aPanel':'a'+x[0].toUpperCase()+x.slice(1)+'Box'); if(box) box.classList.toggle('hidden',x!==tab); const btn=$('aTab'+x[0].toUpperCase()+x.slice(1)); if(btn) btn.classList.toggle('active',x===tab)});
+window.showAterpeaTab=function(tab){
+  selectedAterTab=tab;
+  const map={panel:'aPanel',visits:'aVisitsBox',waitlist:'aWaitlistBox',rooms:'aRoomsBox',reservations:'aReservationsBox',students:'aStudentsBox'};
+  Object.entries(map).forEach(([key,id])=>{const box=$(id); if(box) box.classList.toggle('hidden',key!==tab)});
+  const btnMap={panel:'aTabPanel',visits:'aTabVisits',waitlist:'aTabWaitlist',rooms:'aTabRooms',reservations:'aTabReservations',students:'aTabStudents'};
+  Object.entries(btnMap).forEach(([key,id])=>{const btn=$(id); if(btn) btn.classList.toggle('active',key===tab)});
 }
 function depositTotal(s){return Number(s.deposit_total ?? s.deposit_amount ?? 0)}
 function depositPaid(s){return Number(s.deposit_paid ?? 0)}
